@@ -67,6 +67,9 @@ public class ArcMenu extends RelativeLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                	if(mArcLayout.isAnimating())
+                		return false;
+                	
                     mHintView.startAnimation(createHintSwitchAnimation(mArcLayout.isExpanded()));
                     mArcLayout.switchState(true);
                 }
@@ -88,6 +91,9 @@ public class ArcMenu extends RelativeLayout {
 
             @Override
             public void onClick(final View viewClicked) {
+            	if (mArcLayout.isAnimating())
+            		return;
+            	
                 Animation animation = bindItemAnimation(viewClicked, true, 400);
                 animation.setAnimationListener(new AnimationListener() {
 
@@ -103,6 +109,7 @@ public class ArcMenu extends RelativeLayout {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
+                    	mArcLayout.setAnimating(false);
                         postDelayed(new Runnable() {
 
                             @Override
@@ -122,6 +129,7 @@ public class ArcMenu extends RelativeLayout {
                 }
 
                 mArcLayout.invalidate();
+                mArcLayout.setAnimating(true);
                 mHintView.startAnimation(createHintSwitchAnimation(true));
 
                 if (listener != null) {

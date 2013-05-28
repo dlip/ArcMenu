@@ -75,6 +75,8 @@ public class ArcLayout extends ViewGroup {
     private int mRadius;
 
     private boolean mExpanded = false;
+    
+    private boolean mAnimating = false;
 
     public ArcLayout(Context context) {
         super(context);
@@ -307,13 +309,25 @@ public class ArcLayout extends ViewGroup {
 		this.mRotateDuration = rotateDuration;
 	}
 
+	public boolean isAnimating() {
+		return mAnimating;
+	}
+
+	public void setAnimating(boolean animating) {
+		this.mAnimating = animating;
+	}
+
 	/**
      * switch between expansion and shrinkage
      * 
      * @param showAnimation
      */
     public void switchState(final boolean showAnimation) {
+    	if (mAnimating)
+    		return;
+    	
         if (showAnimation) {
+        	mAnimating = true;
             final int childCount = getChildCount();
             for (int i = 0; i < childCount; i++) {
                 bindChildAnimation(getChildAt(i), i, 300);
@@ -330,6 +344,7 @@ public class ArcLayout extends ViewGroup {
     }
 
     private void onAllAnimationsEnd() {
+    	mAnimating = false;
         final int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             getChildAt(i).clearAnimation();
