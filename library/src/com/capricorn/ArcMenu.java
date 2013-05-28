@@ -109,11 +109,11 @@ public class ArcMenu extends RelativeLayout {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                    	mArcLayout.setAnimating(false);
                         postDelayed(new Runnable() {
 
                             @Override
                             public void run() {
+                            	mArcLayout.setAnimating(false);
                                 itemDidDisappear();
                             }
                         }, 0);
