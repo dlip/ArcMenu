@@ -11,7 +11,9 @@
         custom:childSize="30dp"
         custom:controlSize="45dp"
         custom:fromDegrees="270.0"
-        custom:toDegrees="360.0" />
+        custom:toDegrees="360.0"
+        custom:rotateDegrees="45"
+        custom:rotateDuration="100"/>
 
     <FrameLayout
         android:id="@+id/control_layout"

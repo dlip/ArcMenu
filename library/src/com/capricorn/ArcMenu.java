@@ -161,11 +161,12 @@ public class ArcMenu extends RelativeLayout {
         return animationSet;
     }
 
-    private static Animation createHintSwitchAnimation(final boolean expanded) {
-        Animation animation = new RotateAnimation(expanded ? 45 : 0, expanded ? 0 : 45, Animation.RELATIVE_TO_SELF,
+    private Animation createHintSwitchAnimation(final boolean expanded) {
+    	float rotateDegrees = mArcLayout.getRotateDegrees();
+        Animation animation = new RotateAnimation(expanded ? rotateDegrees : 0, expanded ? 0 : rotateDegrees, Animation.RELATIVE_TO_SELF,
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setStartOffset(0);
-        animation.setDuration(100);
+        animation.setDuration(mArcLayout.getRotateDuration());
         animation.setInterpolator(new DecelerateInterpolator());
         animation.setFillAfter(true);
 

@@ -56,10 +56,18 @@ public class ArcLayout extends ViewGroup {
     public static final float DEFAULT_FROM_DEGREES = 270.0f;
 
     public static final float DEFAULT_TO_DEGREES = 360.0f;
+    
+    public static final float DEFAULT_ROTATE_DEGREES = 45.0f;
+    
+    public static final int DEFAULT_ROTATE_DURATION = 100;
 
     private float mFromDegrees = DEFAULT_FROM_DEGREES;
 
     private float mToDegrees = DEFAULT_TO_DEGREES;
+    
+    private float mRotateDegrees = DEFAULT_ROTATE_DEGREES;
+    
+    private int mRotateDuration = DEFAULT_ROTATE_DURATION;
 
     private static final int MIN_RADIUS = 1;
 
@@ -79,6 +87,8 @@ public class ArcLayout extends ViewGroup {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ArcLayout, 0, 0);
             mFromDegrees = a.getFloat(R.styleable.ArcLayout_fromDegrees, DEFAULT_FROM_DEGREES);
             mToDegrees = a.getFloat(R.styleable.ArcLayout_toDegrees, DEFAULT_TO_DEGREES);
+            mRotateDegrees = a.getFloat(R.styleable.ArcLayout_rotateDegrees, DEFAULT_ROTATE_DEGREES);
+            mRotateDuration = a.getInteger(R.styleable.ArcLayout_rotateDuration, DEFAULT_ROTATE_DURATION);
             mChildSize = Math.max((int)a.getDimension(R.styleable.ArcLayout_childSize, 0), 0);
             mControlSize = Math.max((int)a.getDimension(R.styleable.ArcLayout_controlSize, 0), 0);
           
@@ -278,8 +288,26 @@ public class ArcLayout extends ViewGroup {
 
         requestLayout();
     }
+    
+    
 
-    /**
+    public float getRotateDegrees() {
+		return mRotateDegrees;
+	}
+
+	public void setRotateDegrees(float rotateDegrees) {
+		this.mRotateDegrees = rotateDegrees;
+	}
+
+	public int getRotateDuration() {
+		return mRotateDuration;
+	}
+
+	public void setRotateDuration(int rotateDuration) {
+		this.mRotateDuration = rotateDuration;
+	}
+
+	/**
      * switch between expansion and shrinkage
      * 
      * @param showAnimation

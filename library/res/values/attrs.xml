@@ -3,6 +3,8 @@
 	<declare-styleable name="ArcLayout">
 		<attr name="fromDegrees" format="float" />
 		<attr name="toDegrees" format="float" />
+		<attr name="rotateDegrees" format="float" />
+		<attr name="rotateDuration" format="integer" />
 		<attr name="childSize" format="dimension" />
 		<attr name="controlSize" format="dimension" />
 	</declare-styleable>
